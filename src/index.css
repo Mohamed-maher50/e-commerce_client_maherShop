@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.customScroll::-webkit-scrollbar {
+  width: 5px; /* width of the entire scrollbar */
+  @apply duration-500;
+}
+.customScroll::-webkit-scrollbar-track {
+  @apply bg-slate-200 /* color of the tracking area */;
+}
+.customScroll::-webkit-scrollbar-thumb {
+  /* color of the scroll thumb */
+
+  /* creates padding around scroll thumb */
+  @apply bg-primary;
+}
+.row4 {
+  grid-template-columns: auto repeat(3, minmax(0, 1fr));
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.pagination li {
+  margin: 0 2px;
+}
+
+.pagination a {
+  padding: 8px 16px;
+  background-color: #e2e8f0;
+  border: 1px solid #cbd5e0;
+  color: #2d3748;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination a:hover {
+  background-color: #cbd5e0;
+}
+
+.pagination .active a {
+  background-color: #4299e1;
+  color: #ffffff;
+}
+* {
+  font-family: "Rubik", sans-serif;
+}
