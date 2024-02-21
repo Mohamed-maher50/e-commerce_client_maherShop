@@ -11,8 +11,8 @@ const CategoryCard = ({ _id, image }) => {
       onClick={handleOnClick}
       className="rounded-full overflow-hidden h-fit block "
     >
-      <div className="cursor-pointer p-5 items-center hover:scale-110 duration-500">
-        <img src={image} className="  h-32 w-32   " />
+      <div className="cursor-pointer  items-center hover:scale-95 duration-500">
+        <img src={image} className="    " />
       </div>
     </Link>
   );

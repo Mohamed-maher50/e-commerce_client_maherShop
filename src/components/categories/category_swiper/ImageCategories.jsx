@@ -31,7 +31,7 @@ const ImageCategories = ({ categories }) => {
           return (
             <SwiperSlide
               key={index}
-              className="w-36 h-40 flex justify-center items-center"
+              className="flex h-32 w-32  justify-center items-center"
             >
               <CategoryCard {...category} />
             </SwiperSlide>

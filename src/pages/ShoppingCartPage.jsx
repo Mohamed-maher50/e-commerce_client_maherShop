@@ -7,7 +7,7 @@ import ShoppingHeader from "../components/cart/ShoppingHeader";
 const ShoppingCart = () => {
   let limit = 4;
   const [items, loading, cart, nextPage, prevPage] = useCart_Items_hook(4);
-  console.log(cart);
+
   return (
     <div>
       <div className="grid  lg:grid-cols-8 gap-4">
@@ -28,7 +28,7 @@ const ShoppingCart = () => {
               </Link>
             </div>
           )}
-          {cart && cart.products.length > limit && (
+          {cart && cart.products?.length > limit && (
             <div className="w-full col-span-full">
               <div className="join grid grid-cols-2 min-w-[150px] mx-auto w-fit max-w-sm">
                 <button

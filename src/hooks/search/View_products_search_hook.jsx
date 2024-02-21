@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts_async } from "../../reducers/products/ProductsThunks";
 
 const View_products_search_hook = () => {
-  let limit = 8;
+  let limit = 3;
   const { productsResult, loading } = useSelector(
     (state) => state.ProductsReducer
   );
@@ -24,7 +24,7 @@ const View_products_search_hook = () => {
 
     dispatch(
       getProducts_async(
-        `?sort=${sortType}&limit=8&keyword=${word}&${queryCat}&${brandCat}${pricefromString}${priceToString}&page=`
+        `?sort=${sortType}&limit=${limit}&keyword=${word}&${queryCat}&${brandCat}${pricefromString}${priceToString}&page=`
       )
     );
   };

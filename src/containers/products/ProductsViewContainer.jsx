@@ -31,6 +31,8 @@ const ProductsViewContainer = () => {
   // const [horizontal, setHorizontal] = useState(false);
   const [productsResult, loading, onPress, getProduct, sortOnChange] =
     View_products_search_hook();
+  console.log(productsResult?.paginationResult?.numberOfPages);
+  console.log(productsResult);
 
   return (
     <>
@@ -45,18 +47,18 @@ const ProductsViewContainer = () => {
           onChange={sortOnChange}
         />
       </div>
-      <ViewStyle className="col-span-full" />
+      {/* <ViewStyle className="col-span-full" /> */}
       {productsResult?.data?.map((p, index) => {
         return <ProductCart key={index} {...p} />;
       })}
       <div className="w-fit mx-auto col-span-full ">
-        {!!(productsResult?.paginationResult?.numberOfPages - 1) && (
+        {productsResult?.paginationResult?.numberOfPages > 1 && (
           <ReactPaginate
             breakLabel="..."
             pageClassName="px-2 py-1 text-white text-md font-bold rounded-md"
             activeClassName="bg-primary"
             onPageChange={onPress}
-            pageCount={productsResult?.paginationResult?.numberOfPages - 1 || 0}
+            pageCount={productsResult?.paginationResult?.numberOfPages}
             className="flex gap-5 w-fit mx-auto"
           />
         )}

@@ -24,12 +24,12 @@ const breakpoints = {
 };
 const ProductsContainer = ({ query = "", bannerPath = "" }) => {
   const [favProducts] = useCard_container_hook();
-
-  console.log(favProducts);
   let [products, loading] = use_Home_Products(query);
   return (
     <section>
-      {bannerPath && <img src={bannerPath} className="h-80 my-4 w-full " />}
+      {bannerPath && (
+        <img src={bannerPath} className="h-80 my-4 w-full object-fill" />
+      )}
 
       {loading && (
         <div className="flex flex-nowrap gap-3 overflow-hidden">
@@ -45,6 +45,7 @@ const ProductsContainer = ({ query = "", bannerPath = "" }) => {
       )}
       <DefaultSwiper
         breakpoints={breakpoints}
+        className=" min-h-[400px]"
         loop={products?.data?.length > 10}
       >
         {products?.data?.map((product, index) => {
