@@ -1,9 +1,10 @@
 import React from "react";
-import { FormInput } from "../../../components/utility/Inputs";
-import SelectInput from "../../../components/utility/SelectInput";
-import Label from "../../../components/utility/Label";
 import Add_Subcategories_hook from "../../../hooks/subcategories/Add_Subcategories_hook";
-const AddSubCategories = () => {
+import Label from "../../utility/Label";
+import { FormInput } from "../../utility/Inputs";
+import SelectInput from "../../utility/SelectInput";
+
+const CreateSubcategories = () => {
   const [
     categories,
     loading,
@@ -12,7 +13,6 @@ const AddSubCategories = () => {
     categoryOnChange,
     setSelectedCategory,
   ] = Add_Subcategories_hook();
-
   return (
     <form className="grid gap-3" onSubmit={handleSubmitCreateSubcategories}>
       <FormInput
@@ -22,7 +22,7 @@ const AddSubCategories = () => {
         placeholder="Enter Subcategories Name :"
       />
       <div>
-        <Label label="category :" />
+        <Label label="category :" className="py-2" />
         <SelectInput
           options={categories?.data}
           getOptionLabel={(obj) => obj.name}
@@ -32,9 +32,14 @@ const AddSubCategories = () => {
           value={setSelectedCategory}
         />
       </div>
-      <button>submit</button>
+      <button
+        type="submit"
+        className="btn w-fit btn-error bg-error text-white text-lg"
+      >
+        submit
+      </button>
     </form>
   );
 };
 
-export default AddSubCategories;
+export default CreateSubcategories;

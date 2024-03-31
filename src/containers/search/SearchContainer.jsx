@@ -1,13 +1,14 @@
 import React from "react";
 import SearchInput from "../../components/utility/SearchInput";
-import Navbar_search_hook from "../../hooks/search/Navbar_search_hook";
+
+import useFiltrationHook from "../../hooks/useFiltrationHook";
 
 const SearchContainer = () => {
-  const [handleOnChange] = Navbar_search_hook();
+  const { handleSearch } = useFiltrationHook();
 
   return (
     <div>
-      <SearchInput handleOnChange={handleOnChange} />
+      <SearchInput handleOnChange={handleSearch} />
     </div>
   );
 };

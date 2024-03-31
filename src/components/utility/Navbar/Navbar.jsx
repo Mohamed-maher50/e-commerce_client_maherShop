@@ -10,7 +10,6 @@ import ShoppingMenu from "../../cart/ShoppingMenu/ShoppingMenu";
 import AllowTo from "../AllowTo";
 const Navbar = () => {
   const [user, handleLogOut] = useNavbar_Hook();
-
   return (
     <>
       <div className="container mx-auto">
@@ -29,6 +28,21 @@ const Navbar = () => {
           <div className="hidden md:block grow  p-5">
             <SearchContainer />
           </div>
+          <div className="hidden md:block">
+            {!user && (
+              <DropMenu.Container tabIndex={0} label={"Account"}>
+                <Link
+                  to={"/auth/signin"}
+                  className="btn btn-primary text-white"
+                >
+                  Sign in
+                </Link>
+                <Link to={"/auth/SignUp"} className="btn  ">
+                  Sign up
+                </Link>
+              </DropMenu.Container>
+            )}
+          </div>
           <label
             onClick={() => dispatch(setDrawer(true))}
             htmlFor="my-drawer"
@@ -40,9 +54,9 @@ const Navbar = () => {
             <RequireSignIn>
               <DropMenu.Container tabIndex={0} label={user?.data?.name}>
                 <AllowTo isAllow={user?.data?.role} allow={"user"}>
-                  <DropMenu.Item>
-                    <Link to={"/"}>profile page</Link>
-                  </DropMenu.Item>
+                  <Link to={"/account/info"} className="btn">
+                    settings
+                  </Link>
                 </AllowTo>
                 <AllowTo isAllow={user?.data?.role} allow={"admin"}>
                   <DropMenu.Item>

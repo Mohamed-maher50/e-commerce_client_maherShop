@@ -12,9 +12,9 @@ const AvailableColors = ({
             <span
               key={Index}
               onClick={() => onChange(Index)}
-              className={`block rounded-full btn   ${
-                ActiveColor == Index ? " outline" : ""
-              }  outline-offset-2 outline-black w-7 min-h-fit  h-7  p-0 m-0`}
+              className={`block rounded-full btn  ${
+                ActiveColor == Index ? " outline " : ""
+              }   outline-gray-300 outline-offset-2 duration-700 w-6 min-h-fit  h-6 shadow-sm  p-0 m-0`}
               style={{ background: color }}
             ></span>
           );

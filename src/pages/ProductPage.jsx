@@ -1,5 +1,5 @@
 import React from "react";
-import Breadcrumbs from "../components/utility/Breadcrumbs/Index";
+// import Breadcrumbs from "../components/utility/Breadcrumbs/Index";
 import { useParams } from "react-router-dom";
 import CreateReview from "../components/Review/CreateReview";
 import Reviews from "../components/Review/Reviews";

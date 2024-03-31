@@ -1,7 +1,5 @@
 import React from "react";
 import { FaChevronDown } from "react-icons/fa";
-
-import { FaArrowDown } from "react-icons/fa";
 const Container = ({ tabIndex = 0, label, children }) => {
   return (
     <div className="dropdown">

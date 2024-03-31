@@ -7,7 +7,7 @@ export const FormInput = forwardRef(
     ref
   ) => {
     return (
-      <div className="flex flex-col">
+      <div className="flex gap-2 flex-col">
         <Label label={label} />
         <input
           ref={ref}
@@ -30,14 +30,15 @@ export const FileInput = ({
   labelClassName = "",
   ...props
 }) => {
+  let customId = `uploadFileBrand${Date.now()}`;
   return (
     <>
-      <label htmlFor="uploadFileBrand" className={` block ${labelClassName}`}>
+      <label htmlFor={customId} className={` block ${labelClassName}`}>
         <FaCloudUploadAlt className="text-9xl  w-full block rounded-sm  cursor-pointer hover:scale-95 ease-out duration-500 text-primary outline-primary outline outline-offset-8 " />
       </label>
       <input
         type="file"
-        id="uploadFileBrand"
+        id={customId}
         onChange={onchangeHandler}
         className={`hidden ${className}`}
         accept="image/*"

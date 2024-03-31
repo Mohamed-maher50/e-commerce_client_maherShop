@@ -1,66 +1,55 @@
 import React from "react";
-import ProductCart from "../../components/products/ProductCart";
-import ReactPaginate from "react-paginate";
 import SubTitle from "../../components/utility/SubTitle";
-import View_products_search_hook from "../../hooks/search/View_products_search_hook";
-import Select from "react-select";
-import ViewStyle from "../../components/products/ProductFilter";
-const sortTypeOptions = [
-  {
-    label: "no sorting",
-    value: "",
-  },
-  {
-    label: "price low to hight",
-    value: "+price",
-  },
-  {
-    label: "price hight to low",
-    value: "-price",
-  },
-  {
-    label: "most seller",
-    value: "-sold",
-  },
-  {
-    label: "most ratings",
-    value: "-quantity",
-  },
-];
+import SortBy from "./SortBy";
+import { useDispatch, useSelector } from "react-redux";
+import BasicCard from "../../components/BasicCard/BasicCard";
+
+import { useSearchParams } from "react-router-dom";
+
+import { useEffect } from "react";
+import { getProducts_async } from "../../reducers/products/ProductsThunks";
+import Pagination from "../../components/Pagination";
+import { pushToParams } from "../../services/SearchParamsServices";
+
 const ProductsViewContainer = () => {
-  // const [horizontal, setHorizontal] = useState(false);
-  const [productsResult, loading, onPress, getProduct, sortOnChange] =
-    View_products_search_hook();
-  console.log(productsResult?.paginationResult?.numberOfPages);
-  console.log(productsResult);
+  const { productsResult, loading } = useSelector(
+    (state) => state.ProductsReducer
+  );
+  const dispatch = useDispatch();
+  const { paginationResult } = productsResult;
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  useEffect(() => {
+    dispatch(getProducts_async(`?${searchParams.toString()}&limit=8`));
+  }, [searchParams]);
 
   return (
     <>
       <div className="flex justify-between col-span-full items-center">
         <SubTitle
           pathText={""}
-          title={`There are ${productsResult?.data?.length} results`}
+          title={` ${
+            productsResult?.data?.length ? "There are" : "No"
+          } results`}
         />
-        <Select
-          options={sortTypeOptions}
-          defaultValue={sortTypeOptions[0]}
-          onChange={sortOnChange}
-        />
+        <SortBy />
       </div>
       {/* <ViewStyle className="col-span-full" /> */}
       {productsResult?.data?.map((p, index) => {
-        return <ProductCart key={index} {...p} />;
+        return <BasicCard key={index} {...p} />;
       })}
+
       <div className="w-fit mx-auto col-span-full ">
-        {productsResult?.paginationResult?.numberOfPages > 1 && (
-          <ReactPaginate
-            breakLabel="..."
-            pageClassName="px-2 py-1 text-white text-md font-bold rounded-md"
-            activeClassName="bg-primary"
-            onPageChange={onPress}
-            pageCount={productsResult?.paginationResult?.numberOfPages}
-            className="flex gap-5 w-fit mx-auto"
-          />
+        {paginationResult && paginationResult.numberOfPages > 1 && (
+          <div className="col-span-full mt-16 self-end">
+            <Pagination
+              onPageChange={({ selected }) => {
+                console.log(selected);
+                setSearchParams(pushToParams("page", selected + 1));
+              }}
+              pageCount={paginationResult.numberOfPages}
+            />
+          </div>
         )}
       </div>
     </>

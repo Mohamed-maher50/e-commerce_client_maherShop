@@ -75,3 +75,30 @@ export const getUserInformation = createAsyncThunk(
     }
   }
 );
+export const loginWithGoogle = createAsyncThunk(
+  "auth/google",
+  async (token) => {
+    try {
+      const { data } = await axios.post("/api/v1/auth/google", {
+        token,
+      });
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const myOrdersThunk = createAsyncThunk(
+  "orders/get",
+  async ({ query = "" }) => {
+    try {
+      const { data } = await axios.get(`/api/v1/orders${query}`);
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);

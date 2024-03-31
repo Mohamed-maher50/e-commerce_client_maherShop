@@ -24,13 +24,13 @@ const ShoppingCard = ({ color, count, product = {}, price, _id }) => {
           <div className="flex items-center bg-slate-50 shadow-sm rounded-md w-fit p-2 gap-2">
             <span className="text-gray-700 font-bold text-base">Category:</span>
             <span className="lowercase font-bold text-gray-500">
-              {category.name}
+              {category?.name}
             </span>
           </div>
           <div className="flex items-center bg-slate-50 shadow-sm rounded-md w-fit p-2 gap-2">
             <span className="text-gray-700 font-bold text-base">brand:</span>
             <span className="lowercase font-bold text-gray-500">
-              {brand.name}
+              {brand?.name}
             </span>
           </div>
           <div className="flex items-center bg-slate-50 shadow-sm rounded-md w-fit p-2 gap-2">

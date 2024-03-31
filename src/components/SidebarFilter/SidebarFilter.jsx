@@ -1,63 +1,104 @@
 import React from "react";
 import DropDown from "../utility/DropDown";
 import PriceInputs from "../PriceInputs";
-import Sidebar_search_hook from "../../hooks/search/Sidebar_search_hook";
+import useFiltrationHook from "../../hooks/useFiltrationHook";
+import Collapse from "../Collapse";
+
+import Checkbox from "../CheckboxGroup";
+import StarRatings from "react-star-ratings";
+
 const SidebarFilter = () => {
-  const [
-    categoriesState,
-    brandsState,
-    setCheckedCategories,
-    setCheckedBrand,
-    priceTo,
-    priceFrom,
-  ] = Sidebar_search_hook();
+  const {
+    categories,
+    brands,
+    clickCategoryHandler,
+    onChangeState,
+    clearFiltration,
+    clickBrandHandler,
+    searchParams,
+    handleRating,
+  } = useFiltrationHook();
 
   return (
     <div className="grid gap-y-2">
-      <DropDown open={true} label={"categories"} value={"asdf"}>
-        <DropDown.Content className="flex flex-col justify-start text-start">
-          {categoriesState?.categories?.data?.map(({ name, _id }, index) => {
+      <Collapse title="Categories" className="">
+        {categories?.categories.data &&
+          categories.categories.data.map(({ name, _id }, index) => {
             let randomID = `label-${Math.round(Math.random() * 500 + index)}`;
             return (
-              <>
-                <div className="flex items-center gap-3" key={index}>
-                  <input
-                    id={randomID}
-                    type={"checkbox"}
-                    value={_id}
-                    onChange={(e) => setCheckedCategories(e.target, _id)}
-                    className="form-checkbox h-3 w-3 inline-block "
-                  />
-                  <label htmlFor={randomID}>{name}</label>
-                </div>
-              </>
+              <Checkbox
+                key={index}
+                id={randomID}
+                value={_id}
+                onChange={(e) => clickCategoryHandler(e.target, _id)}
+                label={name}
+                labelProps={{
+                  htmlFor: randomID,
+                }}
+                checked={searchParams
+                  .getAll("category[in]")
+                  ?.some((id) => id == _id)}
+              />
             );
           })}
-        </DropDown.Content>
-      </DropDown>
+      </Collapse>
+      <Collapse title="brands">
+        {brands?.data &&
+          brands.data.map(({ name, _id }, index) => {
+            let randomID = `label-${Math.round(Math.random() * 500 + index)}`;
+            return (
+              <Checkbox
+                key={index}
+                value={_id}
+                id={randomID}
+                className="cursor-pointer"
+                onClick={(e) => clickBrandHandler(e.target, _id)}
+                label={name}
+                labelProps={{
+                  htmlFor: randomID,
+                  className: "cursor-pointer",
+                }}
+                checked={searchParams
+                  .getAll("brand[in]")
+                  ?.some((id) => id == _id)}
+              />
+            );
+          })}
+      </Collapse>
 
-      <DropDown label={"brands"} value={"asdf"} open={false}>
-        <DropDown.Content className="flex flex-col justify-start text-start">
-          {brandsState?.brands?.data?.map(({ name, _id }, index) => {
-            let randomID = `label-${Math.round(Math.random() * 500 + index)}`;
-            return (
-              <>
-                <div className="flex items-center gap-3" key={index}>
-                  <input
-                    id={randomID}
-                    type={"checkbox"}
-                    onClick={(e) => setCheckedBrand(e.target, _id)}
-                    value={_id}
-                    className="form-checkbox h-3 w-3 inline-block "
-                  />
-                  <label htmlFor={randomID}>{name}</label>
-                </div>
-              </>
-            );
-          })}
-        </DropDown.Content>
-      </DropDown>
-      <PriceInputs minimumOnChange={priceFrom} maximumOnChange={priceTo} />
+      <div className="collapse p-3 rounded-md collapse-arrow border border-base-300 bg-base-200">
+        {new Array(5).fill(0).map((val, index) => {
+          return (
+            <div
+              key={index}
+              className="cursor-pointer hover:bg-base-300 duration-500 px-1"
+              onClick={() => handleRating(5 - index)}
+            >
+              <StarRatings
+                numberOfStars={5}
+                starDimension="20px"
+                rating={5 - index}
+                starRatedColor="orange"
+              />
+            </div>
+          );
+        })}
+      </div>
+      <div className="collapse p-3 rounded-md collapse-arrow border border-base-300 bg-base-200">
+        <PriceInputs
+          minimumOnChange={onChangeState}
+          maximumOnChange={onChangeState}
+          minValue={searchParams.get("price[gte]") || 0}
+          maxValue={searchParams.get("price[lte]") || null}
+        />
+      </div>
+
+      <button
+        onClick={clearFiltration}
+        className="btn btn-outline btn-primary text-white uppercase tracking-widest hover:text-white"
+      >
+        clear
+      </button>
     </div>
   );
 };

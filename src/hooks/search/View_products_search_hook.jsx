@@ -22,11 +22,11 @@ const View_products_search_hook = () => {
     getStorage();
     sortData();
 
-    dispatch(
-      getProducts_async(
-        `?sort=${sortType}&limit=${limit}&keyword=${word}&${queryCat}&${brandCat}${pricefromString}${priceToString}&page=`
-      )
-    );
+    // dispatch(
+    //   getProducts_async(
+    //     `?sort=${sortType}&limit=${limit}&keyword=${word}&${queryCat}&${brandCat}${pricefromString}${priceToString}&page=`
+    //   )
+    // );
   };
   useEffect(() => {
     getProduct();

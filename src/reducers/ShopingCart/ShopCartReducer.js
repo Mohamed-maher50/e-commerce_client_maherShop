@@ -87,7 +87,7 @@ const shopCartSlice = createSlice({
     builder.addCase(updateAmount_Thunk.fulfilled, (state, { payload }) => {
       state.cart = payload?.data;
       state.items = payload?.data?.products;
-      console.log(payload);
+
       toast.success("success update amount");
     });
     builder.addCase(updateAmount_Thunk.rejected, (state, { payload }) => {});
@@ -95,7 +95,7 @@ const shopCartSlice = createSlice({
 
     builder.addCase(applyCoupon_Thunk.fulfilled, (state, { payload }) => {
       //
-      console.log(payload);
+
       state.cart = payload?.data;
       state.items = payload?.data?.products;
     });

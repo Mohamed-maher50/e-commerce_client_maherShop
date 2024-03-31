@@ -3,14 +3,16 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { FormInput } from "../../components/utility/Inputs";
+import { useSelector } from "react-redux";
 
 const AccountInformation = () => {
   const [userInformation, setUserInformation] = useState(null);
+  const { user } = useSelector((state) => state.AuthReducer);
+
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get(
-        "/api/v1/users/658b458dcc995b577a16879e"
-      );
+      const { data } = await axios.get(`/api/v1/users/getMe`);
+      console.log(data);
       setUserInformation(data.data);
     })();
   }, []);

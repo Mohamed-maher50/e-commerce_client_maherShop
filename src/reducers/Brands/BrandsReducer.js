@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createBrand_thunk, getBrands_thunk } from "./BrandsThunks";
+import {
+  createBrand_thunk,
+  deleteBrand_thunk,
+  getBrands_thunk,
+} from "./BrandsThunks";
 import { toast } from "react-toastify";
 const BrandsSlice = createSlice({
   name: "categories",
@@ -25,6 +29,12 @@ const BrandsSlice = createSlice({
     });
     builder.addCase(createBrand_thunk.rejected, (state, { payload }) => {
       toast.error("some error happen during create brand");
+    });
+    builder.addCase(deleteBrand_thunk.fulfilled, (state, { payload }) => {
+      toast.success("deleted");
+    });
+    builder.addCase(deleteBrand_thunk.rejected, (state, { payload }) => {
+      toast.error("not completed");
     });
   },
 });

@@ -1,8 +1,14 @@
 import React from "react";
 import ApplyCouponCard from "../coupon/ApplyCouponCard";
 import Label from "../utility/Label";
+import { Link } from "react-router-dom";
 
-const ShoppingHeader = ({ totalCartPrice, totalAfterDiscount, coupon }) => {
+const ShoppingHeader = ({
+  totalCartPrice,
+  totalAfterDiscount,
+  coupon,
+  _id,
+}) => {
   return (
     <div className="flex gap-5 mt-4 p-5 flex-wrap bg-white shadow-md rounded-md items-center  justify-between ">
       <div className="flex border-b items-center w-full justify-between">
@@ -35,9 +41,12 @@ const ShoppingHeader = ({ totalCartPrice, totalAfterDiscount, coupon }) => {
         </div>
       )}
       {!coupon && <ApplyCouponCard />}
-      <button className="btn btn-primary text-white w-full btn-md capitalize">
+      <Link
+        to={`/checkout/cart/${_id}`}
+        className="btn btn-primary text-white w-full btn-md capitalize"
+      >
         go to Pay
-      </button>
+      </Link>
     </div>
   );
 };

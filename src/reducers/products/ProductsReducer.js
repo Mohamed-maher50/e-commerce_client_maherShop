@@ -15,12 +15,8 @@ const productsSlice = createSlice({
         state.productsResult = payload;
       }
     });
-    builder.addCase(createProduct_Thunk.fulfilled, (state, { payload }) => {
-      console.log(payload);
-    });
-    builder.addCase(createProduct_Thunk.rejected, (state, { payload }) => {
-      console.log(payload);
-    });
+    builder.addCase(createProduct_Thunk.fulfilled, (state, { payload }) => {});
+    builder.addCase(createProduct_Thunk.rejected, (state, { payload }) => {});
   },
 });
 

@@ -3,50 +3,30 @@ import { Link } from "react-router-dom";
 
 const AdminSidebar = ({ className = "" }) => {
   return (
-    <div className={` ${className}`}>
-      <ul className="menu bg-base-200  menu-horizontal rounded-box">
+    <div className={`overflow-hidden ${className}`}>
+      <ul className="menu w-full max-sm:hidden bg-base-200 flex  flex-wrap menu-horizontal flex-col rounded-box">
         <li>
           <h2 className="menu-title">Dashboard</h2>
-          <ul className="menu  max-lg:menu-horizontal flex flex-wrap">
+          <ul className="menu w-full max-lg:menu-horizontal flex flex-wrap">
             <li>
-              <Link
-                to={"/admin/products-management"}
-                className="capitalize font-bold underline"
-              >
+              <Link to={"users"}>Users</Link>
+            </li>
+            <li>
+              <Link to={"/admin/products-management"}>
                 products managements
               </Link>
             </li>
             <li>
-              <Link
-                to={"/admin/add-brand"}
-                className="capitalize font-bold underline"
-              >
-                add brand
-              </Link>
+              <Link to={"/admin/brands"}> brands</Link>
             </li>
             <li>
-              <Link
-                to={"/admin/add-category"}
-                className="capitalize font-bold underline"
-              >
-                add category
-              </Link>
+              <Link to={"/admin/categories"}> categories</Link>
             </li>
             <li>
-              <Link
-                to={"/admin/create-product"}
-                className="capitalize font-bold underline"
-              >
-                create product
-              </Link>
+              <Link to={"/admin/create-product"}> products</Link>
             </li>
             <li>
-              <Link
-                to={"/admin/subcategories/create-subcategories"}
-                className="capitalize font-bold underline"
-              >
-                create subcategories
-              </Link>
+              <Link to={"/admin/subcategories"}>subcategories</Link>
             </li>
           </ul>
         </li>

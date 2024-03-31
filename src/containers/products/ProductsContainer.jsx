@@ -15,11 +15,12 @@ const breakpoints = {
   769: {
     slidesPerView: 3,
   },
+
   1025: {
     slidesPerView: 5,
   },
-  1200: {
-    slidesPerView: 5,
+  1500: {
+    slidesPerView: 6,
   },
 };
 const ProductsContainer = ({ query = "", bannerPath = "" }) => {
@@ -45,14 +46,14 @@ const ProductsContainer = ({ query = "", bannerPath = "" }) => {
       )}
       <DefaultSwiper
         breakpoints={breakpoints}
-        className=" min-h-[400px]"
+        className="flex "
         loop={products?.data?.length > 10}
       >
         {products?.data?.map((product, index) => {
           const isLoved = favProducts?.some((fav) => fav._id == product._id);
 
           return (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={index} className="">
               <BasicCard {...product} object={product} loved={isLoved} />
             </SwiperSlide>
           );

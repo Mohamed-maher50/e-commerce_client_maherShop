@@ -7,7 +7,7 @@ import ShoppingMenuHeader from "./ShoppingMenuHeader";
 
 const ShoppingMenu = () => {
   const [items, loading, cart] = useCart_Items_hook();
-  console.log(cart);
+
   return (
     <div className="text-primary dropdown  w-fit dropdown-bottom rounded-none dropdown-end cursor-pointer font-bold flex flex-col items-center border-l-2 justify-center">
       <div className="indicator " tabIndex={0}>

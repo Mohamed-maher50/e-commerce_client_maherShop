@@ -1,12 +1,7 @@
 import React from "react";
 import { useRef } from "react";
 
-const PriceInputs = ({
-  minimumOnChange,
-  maximumOnChange,
-  minValue,
-  maxValue,
-}) => {
+const PriceInputs = ({ minimumOnChange, maximumOnChange, minValue }) => {
   let localFrom = localStorage.getItem("priceFrom");
   let localTo = localStorage.getItem("priceTo");
   return (
@@ -15,19 +10,20 @@ const PriceInputs = ({
       <div className="grid grid-cols-2 justify-between gap-2">
         <div>
           <input
-            className="input w-full "
+            className="input rounded-sm input-sm focus:outline-none w-full  bg-gray-50"
             min={0}
-            onChange={(e) => minimumOnChange(e.target.value)}
+            onChange={(e) => minimumOnChange("price[gte]", e.target.value)}
             id="minPrice"
             type="number"
+            defaultValue={minValue}
             placeholder="min"
-            value={localFrom}
+            value={minValue || null}
           />
         </div>
         <div>
           <input
-            onChange={(e) => maximumOnChange(e.target.value)}
-            className="input w-full "
+            onChange={(e) => maximumOnChange("price[lte]", e.target.value)}
+            className="input rounded-sm input-sm focus:outline-none w-full  bg-gray-50"
             min={0}
             id="maxPrice"
             type="number"

@@ -1,11 +1,10 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import ProductsPage from "./pages/ProductsPage";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import ShoppingCart from "./pages/ShoppingCartPage";
 import ProtectRoute from "./services/ProtectRoute";
-import "react-toastify/dist/ReactToastify.css";
+
 import { ToastContainer, cssTransition } from "react-toastify";
 import ResetPasswordPage from "./pages/Authentication/ResetPasswordPage";
 import AccountPage from "./pages/Account/AccountPage";
@@ -17,32 +16,34 @@ import ForgetPassword from "./pages/Authentication/ForgetPassword";
 import VerifyRestPasswordCode from "./pages/Authentication/VerifyRestPasswordCode";
 import Addresses from "./pages/Account/Addresses";
 import ChangePassword from "./pages/Account/ChangePassword";
-import RegistrationNav from "./components/utility/RegistrationNav";
 import AllCategoriesPage from "./pages/AllCategoriesPage";
 import AllBrandsPage from "./pages/AllbrandsPage";
 import Navbar from "./components/utility/Navbar/Navbar";
-import "animate.css/animate.css";
-import AddBrandPage from "./pages/admin/AddBrandPage";
 import IndexAdminPage from "./pages/admin/IndexAdminPage";
-import AddCategoriesPage from "./pages/admin/AddCategoriesPage";
+import CategoriesPage from "./pages/admin/CategoriesPage";
 import Footer from "./components/utility/Footer";
 import MangeProductsPage from "./pages/admin/products/MangeProductsPage";
 import CreateProduct from "./pages/admin/products/CreateProduct";
-import AddSubCategories from "./pages/admin/subcategories/AddSubCategories";
+import Users from "./pages/admin/Users/Users";
+import CreateOrder from "./pages/CreateOrder";
+import UserOrders from "./pages/Account/UserOrders";
+import MyOrders from "./pages/Account/MyOrders";
+import DeleteAccount from "./pages/Account/DeleteAccount";
+import BrandsPage from "./pages/admin/BrandPage";
+import SubCategories from "./pages/admin/subcategories/SubCategoriesPage";
+import "react-toastify/dist/ReactToastify.css";
+import "animate.css/animate.css";
+import "./App.css";
 const bounce = cssTransition({
   enter: "animate__animated animate__fadeInLeft",
   exit: "animate__animated animate__fadeOutRight",
 });
 
 function App() {
-  const user = localStorage.getItem("user");
-
   return (
-    <div className="min-h-screen    ">
-      <RegistrationNav />
-
+    <div className="min-h-screen  flex flex-col  ">
       <Navbar />
-      {/* <CategoryNav /> */}
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/allCategories" element={<AllCategoriesPage />} />
@@ -55,11 +56,12 @@ function App() {
             </ProtectRoute>
           }
         />
+        <Route path="/checkout/cart/:cartId" element={<CreateOrder />} />
         <Route path="/products/">
           <Route index element={<ProductsPage />} />
           <Route path=":id" element={<ProductPage />} />
         </Route>
-        <></>
+
         <Route path="/auth/*">
           <Route path="signIn" element={<SignIn />} />
           <Route path="SignUp" element={<SignUp />} />
@@ -70,21 +72,29 @@ function App() {
           />
           <Route path="restPasswordCode" element={<ResetPasswordPage />} />
         </Route>
-        <Route path="/account" element={<AccountPage />}>
+        <Route
+          path="/account"
+          element={
+            <ProtectRoute>
+              <AccountPage />
+            </ProtectRoute>
+          }
+        >
           <Route path="MyWishList" element={<MyWishList />} />
           <Route path="info" element={<AccountInformation />} />
           <Route path="addresses" element={<Addresses />} />
           <Route path="changePassword" element={<ChangePassword />} />
+          <Route path="myOrders" element={<MyOrders />} />
+          <Route path="orders" element={<UserOrders />} />
+          <Route path="delete" element={<DeleteAccount />} />
         </Route>
         <Route path="/admin/*" element={<IndexAdminPage />}>
-          <Route path="add-brand" element={<AddBrandPage />} />
-          <Route path="add-category" element={<AddCategoriesPage />} />
+          <Route path="users" element={<Users />} />
+          <Route path="brands" element={<BrandsPage />} />
+          <Route path="categories" element={<CategoriesPage />} />
           <Route path="products-management" element={<MangeProductsPage />} />
           <Route path="create-product" element={<CreateProduct />} />
-          <Route
-            path="subcategories/create-subcategories"
-            element={<AddSubCategories />}
-          />
+          <Route path="subcategories" element={<SubCategories />} />
         </Route>
       </Routes>
 

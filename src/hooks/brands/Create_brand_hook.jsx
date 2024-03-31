@@ -13,6 +13,7 @@ const useCreate_brand_hook = () => {
   };
   const submitForm = (e) => {
     e.preventDefault();
+
     const formData = new FormData();
     formData.append("image", selectedImage);
     formData.append("name", brandName.current?.value);

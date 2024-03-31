@@ -9,6 +9,7 @@ import ProductDetailsReducer from "./products/productDetails/ProductDetailsReduc
 import userSettingReducer from "./user/Settings/SettingReducer.js";
 import AuthReducer from "./user/userReducer.js";
 import subCategoriesReducer from "./subCategories/subCategoriesReducer.js";
+import usersReducer from "./Users/UsersReducer.js";
 export default {
   reducer: {
     shoppingCart,
@@ -22,5 +23,6 @@ export default {
     userSettingReducer,
     ProductDetailsReducer,
     subCategoriesReducer,
+    usersReducer,
   },
 };

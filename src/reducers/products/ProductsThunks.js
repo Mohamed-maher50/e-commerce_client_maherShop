@@ -5,7 +5,7 @@ export const getProducts_async = createAsyncThunk(
   async (query = "", { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/api/v1/products${query}`);
-      //    (data);
+
       return data;
     } catch (error) {
       return rejectWithValue(error);

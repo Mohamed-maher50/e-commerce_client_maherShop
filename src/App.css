@@ -53,3 +53,15 @@ body {
   justify-content: center;
   align-items: center;
 }
+.pagination {
+  @apply flex justify-center items-center mb-20 text-base gap-1;
+}
+.pagination .page-num {
+  @apply py-1 block px-3 rounded-sm duration-300  font-bold;
+}
+.pagination .page-num:hover {
+  @apply bg-primary   text-white;
+}
+.pagination .active {
+  @apply bg-primary rounded-sm text-white;
+}

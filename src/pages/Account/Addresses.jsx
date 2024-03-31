@@ -1,7 +1,7 @@
 import React from "react";
 import { FormInput } from "../../components/utility/Inputs";
 import Select from "react-select";
-import { useState } from "react";
+
 import { Controller, useForm } from "react-hook-form";
 import isValidEgyptianNumber from "../../../utils/ValidatePhoneNumber";
 import { isValidEgyptPostalCode } from "../../../utils/ValidataPostCode";

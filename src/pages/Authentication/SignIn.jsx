@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { loginIn } from "../../reducers/user/userThunks";
+import GoogleProviderButton from "../../components/GoogleProviderButton";
 
 const validation = {
   emailValidation: {
@@ -88,13 +89,17 @@ const SignIn = () => {
           </p>
         </div>
 
-        <div>
+        <div className="grid gap-2">
           <button
             // onClick={() => dispatch(addUser(user))}
-            className="btn btn-primary text-white w-fit px-5 rounded-sm placeholder:capitalize"
+            className="btn btn-primary text-white block w-full px-5 rounded-sm placeholder:capitalize"
           >
             submit
           </button>
+          <div className="mx-auto before:w-28 before:absolute before:bg-gray-400 text-lg uppercase before:top-1/2  mt-5 -translate-y-1/2 before:h-px before:-left-full before:-translate-x-full  after:w-28 after:absolute after:bg-gray-400  after:top-1/2 after:h-px after:-left-0 after:translate-x-1/2    relative">
+            or
+          </div>
+          <GoogleProviderButton />
           <div className="flex justify-between">
             <Link
               to={"/auth/forgetPassword"}

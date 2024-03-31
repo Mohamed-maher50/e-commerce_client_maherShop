@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createCategories_thunk, getCategories_thunk } from "./Thunks";
+import {
+  createCategories_thunk,
+  deleteCategories_thunk,
+  getCategories_thunk,
+  updateCategories_thunk,
+} from "./Thunks";
 import { toast } from "react-toastify";
 
 const CategorySlice = createSlice({
@@ -27,6 +32,20 @@ const CategorySlice = createSlice({
     });
     builder.addCase(createCategories_thunk.rejected, (state, { payload }) => {
       toast.error("can not create category");
+    });
+    builder.addCase(deleteCategories_thunk.fulfilled, () => {
+      toast.success("✅ deleted");
+    });
+    builder.addCase(deleteCategories_thunk.rejected, () => {
+      toast.warn("error happened");
+    });
+
+    builder.addCase(updateCategories_thunk.fulfilled, (_, { payload }) => {
+      toast.success("✅ success update");
+      return 200;
+    });
+    builder.addCase(updateCategories_thunk.rejected, (_, { payload }) => {
+      toast.error("❎ error update");
     });
   },
 });

@@ -7,6 +7,8 @@ import {
   verifyRestPasswordCode_API,
   loginIn,
   updateUserAddress,
+  loginWithGoogle,
+  myOrdersThunk,
 } from "./userThunks";
 
 export const AuthSlice = createSlice({
@@ -19,6 +21,11 @@ export const AuthSlice = createSlice({
       email: "",
       isVerified: false,
       success: false,
+    },
+    orders: {
+      loading: false,
+      data: [],
+      errors: [],
     },
   },
   reducers: {
@@ -37,12 +44,10 @@ export const AuthSlice = createSlice({
     //login API
     builder.addCase(loginIn.fulfilled, (state, { payload }) => {
       state.user = payload;
-
       axios.defaults.headers.Authorization = `Bearer ${payload?.token}`;
       localStorage.setItem("user", JSON.stringify(payload));
     });
     builder.addCase(loginIn.rejected, (state, { payload }) => {
-      console.log(payload);
       if (Array.isArray(payload)) {
       } else if (payload?.message) {
         toast.error(payload.message);
@@ -85,8 +90,25 @@ export const AuthSlice = createSlice({
     builder.addCase(updateUserAddress.fulfilled, (state, { payload }) => {
       toast.success("successful ❤️✅");
     });
-    builder.addCase(updateUserAddress.rejected, (state, { payload }) => {
-      payload;
+    builder.addCase(updateUserAddress.rejected, (state, { payload }) => {});
+    builder.addCase(loginWithGoogle.fulfilled, (state, { payload }) => {
+      state.user = payload;
+
+      axios.defaults.headers.Authorization = `Bearer ${payload?.token}`;
+      localStorage.setItem("user", JSON.stringify(payload));
+    });
+
+    // user orders
+    builder.addCase(myOrdersThunk.pending, (state, { payload }) => {
+      state.orders.loading = true;
+    });
+    builder.addCase(myOrdersThunk.fulfilled, (state, { payload }) => {
+      state.orders.data = payload;
+      state.orders.loading = false;
+    });
+    builder.addCase(myOrdersThunk.rejected, (state, { payload }) => {
+      console.log(payload);
+      state.orders.loading = false;
     });
   },
 });

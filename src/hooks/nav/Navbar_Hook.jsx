@@ -8,7 +8,7 @@ const useNavbar_Hook = () => {
   const { user } = useSelector((state) => state.AuthReducer);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(submitLocalProducts());
+    // dispatch(submitLocalProducts());
   }, [user]);
   const handleLogOut = () => {
     dispatch(logOut());
