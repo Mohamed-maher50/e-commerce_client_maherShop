@@ -5,7 +5,7 @@ import ProductPage from "./pages/ProductPage";
 import ShoppingCart from "./pages/ShoppingCartPage";
 import ProtectRoute from "./services/ProtectRoute";
 
-import { ToastContainer, cssTransition } from "react-toastify";
+import { ToastContainer, cssTransition, toast } from "react-toastify";
 import ResetPasswordPage from "./pages/Authentication/ResetPasswordPage";
 import AccountPage from "./pages/Account/AccountPage";
 import MyWishList from "./pages/Account/MyWishList";
@@ -100,13 +100,14 @@ function App() {
 
       <Footer />
       <ToastContainer
-        autoClose={1000}
+        autoClose={1500}
         draggable={true}
         limit={3}
         pauseOnHover={true}
         position="bottom-right"
         className={"capitalize "}
         theme="light"
+        stacked
         transition={bounce}
       />
     </div>

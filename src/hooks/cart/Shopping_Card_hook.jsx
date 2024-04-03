@@ -5,7 +5,7 @@ import {
 } from "../../reducers/ShopingCart/ShopingCartThunks";
 import { useState } from "react";
 import { useEffect } from "react";
-import { toast } from "react-toastify";
+
 const Shopping_Card_hook = (count = 1) => {
   const dispatch = useDispatch();
   const [amount, setAmount] = useState(count);
@@ -16,7 +16,7 @@ const Shopping_Card_hook = (count = 1) => {
     dispatch(deleteProduct_Thunk(id));
   };
   const updateAmount = (_id) => {
-    if (count == amount) return toast.warn("don't eat my brian change amount");
+    if (count == amount) return;
     dispatch(updateAmount_Thunk({ _id, count: amount }));
   };
   const handleAmountChange = (e) => {

@@ -94,7 +94,7 @@ const BasicCard = ({
     <>
       <div className="relative h-full min-h-[450px] group flex w-full  grow flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
         <RequireSignIn>
-          <div className="flex  border w-fit absolute top-1  rounded-md right-1  overflow-hidden z-30 justify-between p-2 text-xl ">
+          <div className="flex bg-gray-200  border w-fit absolute top-1  rounded-md right-1  overflow-hidden z-10 justify-between p-2 text-xl ">
             {/* <div className="badge-ghost badge">10%</div> */}
             <div
               onClick={() => handleWishList(object)}

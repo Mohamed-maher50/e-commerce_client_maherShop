@@ -9,7 +9,6 @@ const Home = () => {
       <div className="container mx-auto flex flex-col gap-y-4">
         <HomeCategories />
         <Offers />
-        <HomeBrands />
         <img
           src="/adds/midum.jpg"
           srcSet="small.jpg 320w,
@@ -17,6 +16,7 @@ const Home = () => {
           /adds/large.jpg 800w"
           className="bg-contain h-60 "
         />
+        <HomeBrands />
 
         <ProductsContainer title={"most sold"} query="?sort=-sold&limit=200" />
 

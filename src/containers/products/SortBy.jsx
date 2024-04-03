@@ -39,6 +39,7 @@ const SortBy = () => {
       options={sortTypeOptions}
       defaultValue={findActive || sortTypeOptions[0]}
       onChange={handleSortBy}
+      className="z-30"
     />
   );
 };

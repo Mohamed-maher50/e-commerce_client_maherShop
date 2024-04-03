@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { getProducts_async } from "../../reducers/products/ProductsThunks";
 import Pagination from "../../components/Pagination";
 import { pushToParams } from "../../services/SearchParamsServices";
+import MobileFiltrationMenu from "../../components/MobileFiltrationMenu";
 
 const ProductsViewContainer = () => {
   const { productsResult, loading } = useSelector(
@@ -33,6 +34,9 @@ const ProductsViewContainer = () => {
           } results`}
         />
         <SortBy />
+      </div>
+      <div className="col-span-full lg:hidden sticky top-0 py-3 bg-white z-20">
+        <MobileFiltrationMenu />
       </div>
       {/* <ViewStyle className="col-span-full" /> */}
       {productsResult?.data?.map((p, index) => {

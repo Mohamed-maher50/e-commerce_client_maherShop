@@ -1,13 +1,7 @@
-.Toastify__toast-theme--light {
-  @apply bg-primary;
+.Toastify__toast {
+  @apply bg-gray-50;
 }
 
-.Toastify__toast {
-  @apply bg-primary;
-}
-.Toastify__toast--default {
-  @apply bg-primary;
-}
 @keyframes swirl-out-bck {
   0% {
     transform: rotate(0) scale(1);

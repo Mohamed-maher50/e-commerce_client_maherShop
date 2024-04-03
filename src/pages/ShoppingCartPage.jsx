@@ -11,7 +11,7 @@ const ShoppingCart = () => {
   return (
     <div>
       <div className="grid  lg:grid-cols-8 gap-4">
-        <div className="order-2 lg:order-none lg:col-span-6 p-2">
+        <div className="order-2 lg:order-none lg:col-span-6 w-full p-2">
           <h1 className="text-xl w-fit mx-auto font-semibold text-primary">
             Shopping Cart
           </h1>
@@ -21,10 +21,10 @@ const ShoppingCart = () => {
           ) : items.length ? (
             <ShoppingCartProductContainer items={items} />
           ) : (
-            <div className=" alert text-lg font-bold">
+            <div className=" alert w-fit mx-auto text-lg font-bold">
               shopping card is empty
               <Link to={"/"} className="btn btn-primary text-white font-bold">
-                go to shopping
+                Go To Shopping
               </Link>
             </div>
           )}
@@ -47,7 +47,7 @@ const ShoppingCart = () => {
             </div>
           )}
         </div>
-        {cart && (
+        {cart && !!cart.totalCartPrice && (
           <div className="lg:col-span-2 order-1 lg:order-none p-2 ">
             <ShoppingHeader {...cart} />
           </div>

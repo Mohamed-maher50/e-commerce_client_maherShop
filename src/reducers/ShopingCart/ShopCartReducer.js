@@ -67,11 +67,8 @@ const shopCartSlice = createSlice({
     builder.addCase(addToCart_Thunk.fulfilled, (state, { payload }) => {
       state.items = [...payload.data.products];
       state.cart = payload?.data;
-      toast.success("successful addition ✅❤️");
     });
-    builder.addCase(addToCart_Thunk.rejected, (state, { payload }) => {
-      toast.error("maybe your connection is not good🥺");
-    });
+
     builder.addCase(submitLocalProducts.fulfilled, () => {
       localStorage.removeItem("cart");
     });
@@ -79,7 +76,6 @@ const shopCartSlice = createSlice({
     builder.addCase(deleteProduct_Thunk.fulfilled, (state, { payload }) => {
       state.items = payload.products;
       state.cart = payload;
-      toast.success("success delete product");
     });
     builder.addCase(deleteProduct_Thunk.rejected, (state, { payload }) => {
       if (String(payload)) toast.error(payload);
@@ -87,8 +83,6 @@ const shopCartSlice = createSlice({
     builder.addCase(updateAmount_Thunk.fulfilled, (state, { payload }) => {
       state.cart = payload?.data;
       state.items = payload?.data?.products;
-
-      toast.success("success update amount");
     });
     builder.addCase(updateAmount_Thunk.rejected, (state, { payload }) => {});
     // apply coupon

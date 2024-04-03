@@ -50,18 +50,15 @@ const UpdateBrands = () => {
       formValues.append(key, value);
     });
     try {
-      toast.promise(
+      await toast.promise(
         axios.put(`/api/v1/brands/${selectedBrand._id}`, formValues),
         {
-          pending: "Promise is pending",
-          success: (val) => {
-            setNewValues({});
-            setSelectedBrand(false);
-            return "success";
-          },
+          pending: "wait",
+          success: "success",
           error: () => "error",
         }
       );
+      setSelectedBrand(null);
     } catch (error) {
       console.log(error);
     }
@@ -76,7 +73,7 @@ const UpdateBrands = () => {
       <fieldset className="gap-3 grid p-2 border-2">
         <legend className="p-2">Update Category</legend>
         <div className="flex items-center gap-2">
-          {imageURl && (
+          {selectedBrand && (
             <div className="w-20">
               <img src={selectedBrand.image} />
             </div>

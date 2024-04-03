@@ -1,5 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
+import ToastMessages, {
+  defaultToastMessages,
+} from "../../services/ToastMessages";
+
 export const GetShopCart = createAsyncThunk(
   "shopCart/get",
   async (_, { rejectWithValue }) => {
@@ -14,16 +19,28 @@ export const GetShopCart = createAsyncThunk(
 );
 export const addToCart_Thunk = createAsyncThunk(
   "shopCart/add",
-  async ({ productId, color }, { rejectWithValue, fulfillWithValue }) => {
+  async ({ productId, color }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post("/api/v1/cart/", {
-        productId,
-        color,
-      });
+      const { data } = await toast.promise(
+        axios.post("/api/v1/cart/", {
+          productId,
+          color,
+        }),
+
+        ToastMessages({
+          error: {
+            render({ data }) {
+              console.log();
+              if (data.response.status == "401") return "please login";
+              return "some error happened";
+            },
+          },
+        })
+      );
 
       return data;
     } catch (error) {
-      return rejectWithValue({ error, id });
+      return rejectWithValue(error.response.status);
     }
   }
 );
@@ -31,7 +48,10 @@ export const deleteProduct_Thunk = createAsyncThunk(
   "shopCart/delete",
   async (_id, { rejectWithValue }) => {
     try {
-      const { data } = await axios.delete(`/api/v1/cart/${_id}`);
+      const { data } = await toast.promise(
+        axios.delete(`/api/v1/cart/${_id}`),
+        defaultToastMessages
+      );
       return data?.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -42,9 +62,12 @@ export const updateAmount_Thunk = createAsyncThunk(
   "shopCart/update",
   async ({ _id, count }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.put(`/api/v1/cart/${_id}`, {
-        count,
-      });
+      let { data } = await toast.promise(
+        axios.put(`/api/v1/cart/${_id}`, {
+          count,
+        }),
+        defaultToastMessages
+      );
       return data;
     } catch (error) {
       return rejectWithValue(error);
