@@ -27,22 +27,31 @@ const DrawerSide = () => {
           onSubmit={() => drawer.click()}
           className="grow-0"
         />
+        <li onClick={() => drawer.click()} className="capitalize">
+          <Link to={"/"}>Home</Link>
+        </li>
+        <li onClick={() => drawer.click()} className="capitalize">
+          <Link to={"/products"}>discover products</Link>
+        </li>
+        <li onClick={() => drawer.click()} className="capitalize">
+          <Link to={"/allCategories"}>categories</Link>
+        </li>
+        <li onClick={() => drawer.click()} className="capitalize">
+          <Link to={"/allBrands"}>brands</Link>
+        </li>
         <RequireSignIn>
           <AllowTo isAllow={user?.data?.role} allow={"user"}>
-            <li onClick={() => drawer.click()} className="capitalize">
-              <Link to={"user/profile"}>profile page</Link>
-            </li>
             <li onClick={() => drawer.click()} className=" capitalize">
               <Link to={"account/myOrders"}>my orders</Link>
             </li>
-          </AllowTo>
-          <AllowTo isAllow={user?.data?.role} allow={"user"}>
+
             <li className="cursor-pointer capitalize flex p-0 h-fit">
               <Link to={"/account/MyWishList"} onClick={() => drawer.click()}>
                 <span>My WishList</span>
               </Link>
             </li>
           </AllowTo>
+
           <AllowTo isAllow={user?.data?.role0} allow={"user"}>
             <li
               className="cursor-pointer p-0 h-fit"

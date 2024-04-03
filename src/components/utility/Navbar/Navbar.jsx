@@ -10,6 +10,7 @@ import ShoppingMenu from "../../cart/ShoppingMenu/ShoppingMenu";
 import AllowTo from "../AllowTo";
 const Navbar = () => {
   const [user, handleLogOut] = useNavbar_Hook();
+
   return (
     <>
       <div className="container mx-auto">
@@ -24,11 +25,10 @@ const Navbar = () => {
               />
             </Link>
           </div>
-
           <div className="hidden md:block grow  p-5">
             <SearchContainer />
           </div>
-          <div className="hidden md:block">
+          <div className="ml-auto md:block">
             {!user && (
               <DropMenu.Container tabIndex={0} label={"Account"}>
                 <Link
@@ -43,6 +43,7 @@ const Navbar = () => {
               </DropMenu.Container>
             )}
           </div>
+
           <label
             onClick={() => dispatch(setDrawer(true))}
             htmlFor="my-drawer"

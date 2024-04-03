@@ -2,7 +2,7 @@ import React from "react";
 import { FaChevronDown } from "react-icons/fa";
 const Container = ({ tabIndex = 0, label, children }) => {
   return (
-    <div className="dropdown">
+    <div className="dropdown dropdown-end">
       <div tabIndex={tabIndex} role="button" className="btn m-1 flex">
         <span>{label}</span>
         <span>
@@ -11,7 +11,7 @@ const Container = ({ tabIndex = 0, label, children }) => {
       </div>
       <ul
         tabIndex={tabIndex}
-        className="dropdown-content grid gap-2 z-[20] menu p-2 shadow bg-base-100 rounded-box w-52"
+        className="dropdown-content grid gap-2 z-20 menu p-2 shadow bg-base-100 rounded-box w-52"
       >
         {children}
       </ul>
